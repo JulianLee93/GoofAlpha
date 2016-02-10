@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081914201C6BF9C1007C189D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819141F1C6BF9C1007C189D /* Comment.swift */; };
 		1F8099217FAC62F5F21C668C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81A7F0EE3453FF4337BE891 /* Pods.framework */; };
 		B92FED111C6AAE1900C8BADF /* BackendProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FED101C6AAE1900C8BADF /* BackendProcessor.swift */; };
 		B92FED161C6AC4C900C8BADF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FED151C6AC4C900C8BADF /* Post.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0819141F1C6BF9C1007C189D /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		2621F2D8D673AD008E452B78 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B92FED101C6AAE1900C8BADF /* BackendProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendProcessor.swift; sourceTree = "<group>"; };
 		B92FED151C6AC4C900C8BADF /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				B9ECB7631C6A90AD00FB72CD /* User.swift */,
 				B92FED151C6AC4C900C8BADF /* Post.swift */,
+				0819141F1C6BF9C1007C189D /* Comment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				B92FED1D1C6AF02B00C8BADF /* SearchViewController.swift in Sources */,
 				B92FED191C6AEFF000C8BADF /* FeedViewController.swift in Sources */,
 				B9ECB7601C6A905100FB72CD /* LoginViewController.swift in Sources */,
+				081914201C6BF9C1007C189D /* Comment.swift in Sources */,
 				B9ECB7531C6A8F0F00FB72CD /* GoofAlpha.xcdatamodeld in Sources */,
 				B92FED161C6AC4C900C8BADF /* Post.swift in Sources */,
 				FE5F8B2A1C6BC70500BD4D27 /* FeedTableViewCell.swift in Sources */,

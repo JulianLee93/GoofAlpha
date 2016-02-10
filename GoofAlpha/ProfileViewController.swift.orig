@@ -12,8 +12,6 @@ import AVFoundation
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
   
-    static let userProfileViewController = ProfileViewController()
-    
     @IBOutlet weak var profileCollectionView: UICollectionView!
     @IBOutlet weak var profilePictureButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -25,20 +23,36 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         
         profileCollectionView.backgroundColor = UIColor.whiteColor()
+
+
+        
+<<<<<<< HEAD
+        // Do any additional setup after loading the view.
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        //
+        
+        let UID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+        BackendProcessor.backendProcessor.retrievePostsFromUser(UID)
+        
+        if (BackendProcessor.backendProcessor.currentUserPosts.count > 0){
+            let postToPost:Post = BackendProcessor.backendProcessor.currentUserPosts[0]
+            
+            
+            print(postToPost.postedImage)
+            
+        }
+        
+=======
         profilePictureButton.imageView?.image = UIImage(named: "profileimage")
         profilePictureButton.layer.borderWidth = 1.0
         profilePictureButton.layer.masksToBounds = false
         profilePictureButton.layer.borderColor = UIColor.whiteColor().CGColor
         profilePictureButton.layer.cornerRadius = profilePictureButton.frame.size.width/2
         profilePictureButton.clipsToBounds = true
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        for post in BackendProcessor.backendProcessor.currentUserPosts {
-            print(post.user)
-        }
-        
+>>>>>>> 9aa9874c4012188c4cbd6e92193cab5ca01920a3
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +72,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        profilePictureButton.setImage(image as UIImage?, forState: .Normal)
+        profilePictureButton.imageView?.image = image
         imagePicker.dismissViewControllerAnimated(true, completion: {
             
         })
@@ -66,23 +80,26 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return BackendProcessor.backendProcessor.currentUserPosts.count
+        return 17
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profilecell", forIndexPath: indexPath) as! ProfileCollectionViewCell
-        
-        let postToPost:Post = BackendProcessor.backendProcessor.currentUserPosts[indexPath.row]
-        
-        let encodedImageData = postToPost.postedImage
-        let imageData = NSData(base64EncodedString: encodedImageData, options:.IgnoreUnknownCharacters)
-        let image = UIImage(data: (imageData)!)
-        
-        
-        cell.collectionViewCellImage.image = image
+        cell.collectionViewCellImage.image = UIImage(named: "cellimage")
         
         return cell
     }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

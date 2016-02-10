@@ -56,19 +56,40 @@ class BackendProcessor {
     func retrievePostsFromUser(retriever: String){
         let newRef = Firebase(url: "\(baseRef)/posts")
         newRef.queryOrderedByChild("UID").queryEqualToValue(retriever).observeEventType(FEventType.Value, withBlock: { snapshot in
+
+            self.currentUserPosts = [Post]()
             for post in snapshot.children {
                 let currentPost = Post(snapshot: post as! FDataSnapshot)
                 self.currentUserPosts.append(currentPost)
-                print(self.currentUserPosts.count)
             }
-            
-            
-            
+            print(self.currentUserPosts.count)
+
         })
 
     }
     
     
+    func pullUser(retriever: String) -> AnyObject {
+        let newRef = Firebase(url: "\(baseRef)/users")
+        newRef.queryOrderedByChild("UID").queryEqualToValue(retriever).observeEventType(FEventType.Value, withBlock: { snapshot in
+            
+            //let nowUser = snapshot.children as User
+        })
+        
+        return 0 //return the user
+    }
+    
+    
+    func uploadCommentForPost(uploader: String, image: String, comment: String) {
+        
+        let newComment = Comment.init(uploader: uploader, image: image, comment: comment)
+        let comRef = Firebase(url: "\(self.baseRef)/comments")
+        let newCommentCreated = comRef.childByAutoId()
+        newCommentCreated.setValue(newComment.toAnyObject())
+        
+    }
+    
+    //func pull comments array based on image
     
     
     
