@@ -21,7 +21,8 @@ class Post: NSObject {
         postedImage = image
         likes = 0
     }
-
+    
+    
 
     init(snapshot: FDataSnapshot) {
         user = snapshot.value["UID"] as! String

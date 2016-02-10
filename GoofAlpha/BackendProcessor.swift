@@ -12,6 +12,8 @@ import Firebase
 class BackendProcessor {
     static let backendProcessor = BackendProcessor()
     
+    var currentUserPosts = [Post]()
+    
     let baseRef = Firebase(url: "https://goof-alpha-app.firebaseio.com")
     
     var currentUserRef: Firebase {
@@ -52,19 +54,30 @@ class BackendProcessor {
     
     
     func retrievePostsFromUser(retriever: String) {
-//        let UID = retriever
-        let newRef = Firebase(url:"\(baseRef)/posts")
-        var myPosts = [Post]()
-        newRef.observeEventType(.Value, withBlock: { snapshot in
-            
+        let newRef = Firebase(url: "\(baseRef)/posts")
+        newRef.queryOrderedByChild("UID").queryEqualToValue(retriever).observeEventType(FEventType.Value, withBlock: { snapshot in
             for post in snapshot.children {
                 let currentPost = Post(snapshot: post as! FDataSnapshot)
-                myPosts.append(currentPost)
-                print("INNER: \(myPosts)")
+                self.currentUserPosts.append(currentPost)
+                print(self.currentUserPosts.count)
             }
-        })
-        print("OUTTER: \(myPosts)")
-//        return myPosts
+            })
+        
+        
+        
+////        let UID = retriever
+//        let newRef = Firebase(url:"\(baseRef)/posts")
+//        var myPosts = [Post]()
+//        newRef.observeEventType(.Value, withBlock: { snapshot in
+//            
+//            for post in snapshot.children {
+//                let currentPost = Post(snapshot: post as! FDataSnapshot)
+//                myPosts.append(currentPost)
+//                print("INNER: \(myPosts)")
+//            }
+//        })
+//        print("OUTTER: \(myPosts)")
+////        return myPosts
     }
     
     
