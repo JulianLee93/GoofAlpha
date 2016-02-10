@@ -23,6 +23,11 @@ class LoginViewController: UIViewController {
                 self.performSegueWithIdentifier("loginMainSegue", sender: self)
             }
         }
+        
+        if !(NSUserDefaults.standardUserDefaults().valueForKey("username") == nil){
+            loginEmailTextField.text = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
+            
+        }
     }
     
     @IBAction func loginButtonTapped(sender: AnyObject) {

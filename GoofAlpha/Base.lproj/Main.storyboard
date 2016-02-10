@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUl-32-LwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="-125"/>
+            <point key="canvasLocation" x="2265" y="-275"/>
         </scene>
         <!--Posting View Controller-->
         <scene sceneID="rPy-nQ-wyN">
@@ -332,7 +332,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="jw6-bK-ki4">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="9ha-oD-Vnl" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="9ha-oD-Vnl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="AoR-lD-mM8">
                         <autoresizingMask key="autoresizingMask"/>

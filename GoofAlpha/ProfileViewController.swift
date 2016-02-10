@@ -8,20 +8,45 @@
 
 import UIKit
 import Firebase
+import AVFoundation
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
-
+    let imagePicker: UIImagePickerController! = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let UID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+        BackendProcessor.backendProcessor.retrievePostsFromUser(UID)
+        
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    ONBUTTONTAPPED(){
+        presentViewController(imagePicker, animated: true, completion: {})
+    
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        //imageToPost if your profile picture button
+        button.setimage = image //{
+        
+        imagePicker.dismissViewControllerAnimated(true, completion: {
+            
+        })
+        
     }
     
 

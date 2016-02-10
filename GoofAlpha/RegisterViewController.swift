@@ -32,7 +32,7 @@ class RegisterViewController: UIViewController {
     @IBAction func registerButtonTapped(sender: UIButton) {
         let emailField = registerEmailTextField.text
         let passwordField = registerPassTextField.text
-        
+        NSUserDefaults.standardUserDefaults().setValue(emailField, forKey: "username")
         backendServant.createAuthAndDataForUser(emailField!, passwordField: passwordField!)
     }
     

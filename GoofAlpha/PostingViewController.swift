@@ -25,6 +25,10 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        imageToPost.image = nil
+    }
+    
     override func viewDidAppear(animated: Bool) {
         imagePicker.delegate = self
         
@@ -59,6 +63,8 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
         let imageString = UIImageJPEGRepresentation(imageToPost.image!, 0.5)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
         
         backendServant.uploadPostForUser(uploader, image: imageString!)
+        
+        tabBarController?.selectedIndex = 0
         
     }
     
