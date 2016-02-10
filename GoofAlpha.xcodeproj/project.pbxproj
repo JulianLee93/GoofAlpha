@@ -15,6 +15,7 @@
 		B92FED1B1C6AF02400C8BADF /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FED1A1C6AF02400C8BADF /* PostingViewController.swift */; };
 		B92FED1D1C6AF02B00C8BADF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FED1C1C6AF02B00C8BADF /* SearchViewController.swift */; };
 		B92FED1F1C6AF03800C8BADF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92FED1E1C6AF03800C8BADF /* ProfileViewController.swift */; };
+		B92FED211C6B06FE00C8BADF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92FED201C6B06FE00C8BADF /* AVFoundation.framework */; };
 		B9ECB74B1C6A8F0F00FB72CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9ECB74A1C6A8F0F00FB72CD /* AppDelegate.swift */; };
 		B9ECB7501C6A8F0F00FB72CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9ECB74E1C6A8F0F00FB72CD /* Main.storyboard */; };
 		B9ECB7531C6A8F0F00FB72CD /* GoofAlpha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9ECB7511C6A8F0F00FB72CD /* GoofAlpha.xcdatamodeld */; };
@@ -34,6 +35,7 @@
 		B92FED1A1C6AF02400C8BADF /* PostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 		B92FED1C1C6AF02B00C8BADF /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B92FED1E1C6AF03800C8BADF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B92FED201C6B06FE00C8BADF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B9ECB7471C6A8F0F00FB72CD /* GoofAlpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoofAlpha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9ECB74A1C6A8F0F00FB72CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9ECB74F1C6A8F0F00FB72CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B92FED211C6B06FE00C8BADF /* AVFoundation.framework in Frameworks */,
 				1F8099217FAC62F5F21C668C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +148,7 @@
 		C10F3F2B57E1C56D0A9E7D7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B92FED201C6B06FE00C8BADF /* AVFoundation.framework */,
 				C81A7F0EE3453FF4337BE891 /* Pods.framework */,
 			);
 			name = Frameworks;
