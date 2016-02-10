@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="-153" y="182"/>
         </scene>
-        <!--Item-->
+        <!--Profile View Controller-->
         <scene sceneID="Eku-Sp-q1K">
             <objects>
-                <viewController id="gfy-bs-c1M" sceneMemberID="viewController">
+                <viewController id="gfy-bs-c1M" customClass="ProfileViewController" customModule="GoofAlpha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ql2-Wh-LnW"/>
                         <viewControllerLayoutGuide type="bottom" id="99W-Gy-0nn"/>
@@ -117,16 +117,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="JIh-LZ-vnT"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="contacts" id="JIh-LZ-vnT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZI-mb-fUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1608" y="-466"/>
+            <point key="canvasLocation" x="2968" y="1670"/>
         </scene>
-        <!--View Controller-->
+        <!--Feed View Controller-->
         <scene sceneID="AfA-qr-4qV">
             <objects>
-                <viewController id="uOd-Ff-0Ha" sceneMemberID="viewController">
+                <viewController id="uOd-Ff-0Ha" customClass="FeedViewController" customModule="GoofAlpha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tdf-8W-9zH"/>
                         <viewControllerLayoutGuide type="bottom" id="b2x-ET-DyY"/>
@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="2319" y="-125"/>
         </scene>
-        <!--View Controller-->
+        <!--Posting View Controller-->
         <scene sceneID="rPy-nQ-wyN">
             <objects>
-                <viewController id="kq4-hR-Q9d" sceneMemberID="viewController">
+                <viewController id="kq4-hR-Q9d" customClass="PostingViewController" customModule="GoofAlpha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="blM-wD-kiP"/>
                         <viewControllerLayoutGuide type="bottom" id="Typ-aC-LVB"/>
@@ -155,16 +155,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="viS-sA-3Xj"/>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="viS-sA-3Xj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yp9-pL-Lhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2831" y="176"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="n7A-0r-Bb5">
             <objects>
-                <viewController id="udM-U8-GHO" sceneMemberID="viewController">
+                <viewController id="udM-U8-GHO" customClass="SearchViewController" customModule="GoofAlpha" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X9v-Gr-IDG"/>
                         <viewControllerLayoutGuide type="bottom" id="NRQ-Me-a0H"/>
@@ -174,7 +174,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="xRQ-qb-Wo5"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="xRQ-qb-Wo5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2j-yZ-AEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
