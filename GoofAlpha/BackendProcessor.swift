@@ -14,12 +14,12 @@ class BackendProcessor {
     
     let baseRef = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
     
-    var currentUserRef: Firebase
-        {
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-            let currentUser = Firebase(url: "\(baseRef)").childByAppendingPath("users").childByAppendingPath(userID)
-            return currentUser!
+    var currentUserRef: Firebase {
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+        let currentUser = Firebase(url: "\(baseRef)").childByAppendingPath("users").childByAppendingPath(userID)
+        return currentUser!
     }
+    
     
     func createAuthAndDataForUser(emailField: String, passwordField: String) {
         self.baseRef.createUser(emailField, password: passwordField) { (error, result) -> Void in
@@ -30,7 +30,7 @@ class BackendProcessor {
                         let emailName = emailArray[0]
                         let newUser = User.init(uid: auth.uid, email: emailName)
                         let userRef = Firebase(url: "\(self.baseRef)/users")
-                        let newUserRef = userRef.childByAppendingPath(emailName)
+                        let newUserRef = userRef.childByAutoId()
                         newUserRef.setValue(newUser.toAnyObject())
                 })
             } else {
@@ -39,9 +39,15 @@ class BackendProcessor {
         }
     }
     
-    func uploadPostForUser() {
+    
+    func uploadPostForUser(uploader: String, image: UIImage) {
         
-//        self.baseRef.setValue(<#T##value: AnyObject!##AnyObject!#>)
+        let newPost = Post.init(uploader: uploader, image: image)
+        
+        let postRef = Firebase(url: "\(self.baseRef)/posts")
+        let newPostCreated = postRef.childByAutoId()
+        newPostCreated.setValue(newPost)
+        
     }
     
 }

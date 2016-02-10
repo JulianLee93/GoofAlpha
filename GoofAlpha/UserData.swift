@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-
+/*
 struct UserData {
     
     let key: String!
@@ -36,3 +36,4 @@ struct UserData {
     }
     
 }
+*/
