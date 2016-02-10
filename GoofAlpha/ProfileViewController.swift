@@ -19,37 +19,26 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let UID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        BackendProcessor.backendProcessor.retrievePostsFromUser(UID)
+
         
         // Do any additional setup after loading the view.
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//        let url = NSURL(string: "\(ref)/posts")
-//        let session = NSURLSession.sharedSession()
-//        let task = session.dataTaskWithURL(url!) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-//            do{
-//                self.profilePostJSON = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-//            }
-//            
-//            catch let error as NSError{
-//                print(error.localizedDescription)
-//            }
-//
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                //reload feed here
-//                print(self.profilePostJSON)
-//            })
-//            
-//            
-//        }
-//    
-//        task.resume()
-//    }
     
     override func viewDidAppear(animated: Bool) {
         //
+        
+        let UID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+        BackendProcessor.backendProcessor.retrievePostsFromUser(UID)
+        
+        if (BackendProcessor.backendProcessor.currentUserPosts.count > 0){
+            let postToPost:Post = BackendProcessor.backendProcessor.currentUserPosts[0]
+            
+            
+            print(postToPost.postedImage)
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
