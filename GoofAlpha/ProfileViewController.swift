@@ -10,18 +10,29 @@ import UIKit
 import Firebase
 import AVFoundation
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+  
+    @IBOutlet weak var profileCollectionView: UICollectionView!
+    @IBOutlet weak var profilePictureButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
     let imagePicker: UIImagePickerController! = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profileCollectionView.backgroundColor = UIColor.whiteColor()
 
         let UID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
         BackendProcessor.backendProcessor.retrievePostsFromUser(UID)
         
-        // Do any additional setup after loading the view.
+        profilePictureButton.imageView?.image = UIImage(named: "profileimage")
+        profilePictureButton.layer.borderWidth = 1.0
+        profilePictureButton.layer.masksToBounds = false
+        profilePictureButton.layer.borderColor = UIColor.whiteColor().CGColor
+        profilePictureButton.layer.cornerRadius = profilePictureButton.frame.size.width/2
+        profilePictureButton.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,24 +40,35 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
-    ONBUTTONTAPPED(){
+    @IBAction func onProfilePictureTapped(sender: AnyObject) {
+        
         presentViewController(imagePicker, animated: true, completion: {})
-    
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        
         dismissViewControllerAnimated(true, completion: {})
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        //imageToPost if your profile picture button
-        button.setimage = image //{
-        
+        profilePictureButton.imageView?.image = image
         imagePicker.dismissViewControllerAnimated(true, completion: {
             
         })
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        return 17
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("profilecell", forIndexPath: indexPath) as! ProfileCollectionViewCell
+        cell.collectionViewCellImage.image = UIImage(named: "cellimage")
+        
+        return cell
     }
     
 

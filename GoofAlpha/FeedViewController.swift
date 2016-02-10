@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
 
@@ -24,6 +24,16 @@ class FeedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+        return 13
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell") as! FeedTableViewCell
+        
+    }
 
     /*
     // MARK: - Navigation

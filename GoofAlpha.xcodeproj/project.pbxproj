@@ -23,6 +23,8 @@
 		B9ECB7601C6A905100FB72CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9ECB75F1C6A905100FB72CD /* LoginViewController.swift */; };
 		B9ECB7621C6A905900FB72CD /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9ECB7611C6A905900FB72CD /* RegisterViewController.swift */; };
 		B9ECB7641C6A90AD00FB72CD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9ECB7631C6A90AD00FB72CD /* User.swift */; };
+		FE5F8B241C6BB83600BD4D27 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5F8B231C6BB83600BD4D27 /* ProfileCollectionViewCell.swift */; };
+		FE5F8B2A1C6BC70500BD4D27 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5F8B291C6BC70500BD4D27 /* FeedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		B9ECB7631C6A90AD00FB72CD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C81A7F0EE3453FF4337BE891 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5EA4EAFDF6C67E854FD429 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FE5F8B231C6BB83600BD4D27 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE5F8B291C6BC70500BD4D27 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 		B92FED121C6AB03300C8BADF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE5F8B231C6BB83600BD4D27 /* ProfileCollectionViewCell.swift */,
+				FE5F8B291C6BC70500BD4D27 /* FeedTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -279,11 +285,13 @@
 				B9ECB7601C6A905100FB72CD /* LoginViewController.swift in Sources */,
 				B9ECB7531C6A8F0F00FB72CD /* GoofAlpha.xcdatamodeld in Sources */,
 				B92FED161C6AC4C900C8BADF /* Post.swift in Sources */,
+				FE5F8B2A1C6BC70500BD4D27 /* FeedTableViewCell.swift in Sources */,
 				B92FED1F1C6AF03800C8BADF /* ProfileViewController.swift in Sources */,
 				B9ECB74B1C6A8F0F00FB72CD /* AppDelegate.swift in Sources */,
 				B92FED111C6AAE1900C8BADF /* BackendProcessor.swift in Sources */,
 				B9ECB7641C6A90AD00FB72CD /* User.swift in Sources */,
 				B9ECB7621C6A905900FB72CD /* RegisterViewController.swift in Sources */,
+				FE5F8B241C6BB83600BD4D27 /* ProfileCollectionViewCell.swift in Sources */,
 				B92FED1B1C6AF02400C8BADF /* PostingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
