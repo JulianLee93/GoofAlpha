@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -153,9 +154,38 @@
                     <view key="view" contentMode="scaleToFill" id="m6X-hw-UGf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTK-Px-e0l">
+                                <rect key="frame" x="541" y="28" width="31" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="RMp-a6-Hob"/>
+                                    <constraint firstAttribute="width" constant="31" id="oUe-Kx-hnf"/>
+                                </constraints>
+                                <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="onPostButtonTapped:" destination="kq4-hR-Q9d" eventType="touchUpInside" id="Fen-YB-zYZ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Okr-zD-i46">
+                                <rect key="frame" x="175" y="175" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Feh-Ag-ikZ"/>
+                                    <constraint firstAttribute="height" constant="250" id="aCQ-1b-Fvp"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Okr-zD-i46" firstAttribute="centerX" secondItem="m6X-hw-UGf" secondAttribute="centerX" id="PdT-Jc-PCy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LTK-Px-e0l" secondAttribute="trailing" constant="8" id="ooP-9m-vhr"/>
+                            <constraint firstItem="Okr-zD-i46" firstAttribute="centerY" secondItem="m6X-hw-UGf" secondAttribute="centerY" id="r7X-vS-Thb"/>
+                            <constraint firstItem="LTK-Px-e0l" firstAttribute="top" secondItem="blM-wD-kiP" secondAttribute="bottom" constant="8" id="wCg-T4-v1Q"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="viS-sA-3Xj"/>
+                    <connections>
+                        <outlet property="imageToPost" destination="Okr-zD-i46" id="NEr-Cm-Ap6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yp9-pL-Lhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

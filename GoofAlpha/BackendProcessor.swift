@@ -40,13 +40,12 @@ class BackendProcessor {
     }
     
     
-    func uploadPostForUser(uploader: String, image: UIImage) {
+    func uploadPostForUser(uploader: String, image: String) {
         
         let newPost = Post.init(uploader: uploader, image: image)
-        
         let postRef = Firebase(url: "\(self.baseRef)/posts")
         let newPostCreated = postRef.childByAutoId()
-        newPostCreated.setValue(newPost)
+        newPostCreated.setValue(newPost.toAnyObject())
         
     }
     

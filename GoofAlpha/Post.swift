@@ -9,13 +9,13 @@
 import UIKit
 
 class Post: NSObject {
-    var postedImage = UIImage()
+    var postedImage = String()
     var user = String()
 //    var comments = [String]()
     var likes:Int!
     
     
-    init(uploader: String, image: UIImage) {
+    init(uploader: String, image: String) {
         user = uploader
         postedImage = image
         likes = 0

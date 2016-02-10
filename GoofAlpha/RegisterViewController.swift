@@ -14,7 +14,6 @@ class RegisterViewController: UIViewController {
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
     let backendServant = BackendProcessor()
     
-    
     @IBOutlet weak var registerEmailTextField: UITextField!
     
     @IBOutlet weak var registerPassTextField: UITextField!
