@@ -13,11 +13,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
 
+    @IBOutlet weak var feedTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         BackendProcessor.backendProcessor.retrievePostsFromUser()
         BackendProcessor.backendProcessor.pullUser()
+        BackendProcessor.backendProcessor.retrieveAllPosts()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        feedTableView.reloadData()
+        print("FEED COUNT: \(BackendProcessor.backendProcessor.feedPostArray.count)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,12 +35,17 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return 13
+        return BackendProcessor.backendProcessor.feedPostArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell") as! FeedTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as! FeedTableViewCell
+        let post = BackendProcessor.backendProcessor.feedPostArray[indexPath.row]
+        cell.usernameLabel.text = post.user
+        let imageString = post.postedImage
+        cell.imageView?.image = imageString.translateStringToImage()
+        
         return cell
         
     }

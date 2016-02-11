@@ -13,6 +13,7 @@ class BackendProcessor {
     
     static let backendProcessor = BackendProcessor()
     var currentUserPosts = [Post]()
+    var feedPostArray = [Post]()
     var currentUserDictionary:NSDictionary?
     let baseRef = Firebase(url: "https://goof-alpha-app.firebaseio.com")
     
@@ -67,7 +68,20 @@ class BackendProcessor {
                 let currentPost = Post(snapshot: post as! FDataSnapshot)
                 self.currentUserPosts.append(currentPost)
             }
-            print("COUNT OF ALL CURRENT USER POSTS: \(self.currentUserPosts.count)")
+            print("COUNT OF CURRENT USER POSTS: \(self.currentUserPosts.count)")
+        })
+    }
+    
+    
+    func retrieveAllPosts(){
+        let newRef = Firebase(url: "\(baseRef)/posts")
+        newRef.queryOrderedByChild("likes").observeEventType(FEventType.Value, withBlock: { snapshot in
+            self.feedPostArray = [Post]()
+            for post in snapshot.children {
+                let currentPost = Post(snapshot: post as! FDataSnapshot)
+                self.feedPostArray.append(currentPost)
+            }
+            print("COUNT OF ALL USER POSTS: \(self.feedPostArray.count)")
         })
     }
     

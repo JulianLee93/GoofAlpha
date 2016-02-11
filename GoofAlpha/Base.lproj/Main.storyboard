@@ -198,7 +198,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profilecell" id="VyJ-qf-vzu" customClass="FeedTableViewCell" customModule="GoofAlpha" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" id="VyJ-qf-vzu" customClass="FeedTableViewCell" customModule="GoofAlpha" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="450"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VyJ-qf-vzu" id="Mf0-Tj-7Bq">
@@ -226,8 +226,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="feedImageView" destination="Tmq-Nr-Mpk" id="5wd-ZO-dm1"/>
+                                            <outlet property="usernameLabel" destination="euQ-Ro-gkn" id="ZkX-Z6-tWo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="uOd-Ff-0Ha" id="mzh-qJ-kEc"/>
+                                    <outlet property="delegate" destination="uOd-Ff-0Ha" id="dwi-Dx-Kqf"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -239,6 +247,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="recents" id="uFI-FH-f6i"/>
+                    <connections>
+                        <outlet property="feedTableView" destination="jfA-uz-XIZ" id="tNm-Xc-4nO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUl-32-LwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

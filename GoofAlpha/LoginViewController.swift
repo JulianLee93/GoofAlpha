@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
             withCompletionBlock: { (error, auth) in
                 print(auth.uid)
                 NSUserDefaults.standardUserDefaults().setValue(auth.uid, forKey: "uid")
+
         })
     }
 }
