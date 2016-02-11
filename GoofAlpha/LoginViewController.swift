@@ -12,7 +12,7 @@ import Firebase
 class LoginViewController: UIViewController {
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
-    
+
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPassTextField: UITextField!
     
@@ -20,24 +20,22 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         ref.observeAuthEventWithBlock { (authData) -> Void in
             if authData != nil {
+                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
+                print("OBSERVE LOGIN AUTH UID IS: \(authData.uid)")
                 self.performSegueWithIdentifier("loginMainSegue", sender: self)
             }
         }
-        
         if !(NSUserDefaults.standardUserDefaults().valueForKey("username") == nil){
             loginEmailTextField.text = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
-            
         }
     }
+    
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
         ref.authUser(loginEmailTextField.text, password: loginPassTextField.text,
             withCompletionBlock: { (error, auth) in
+                print(auth.uid)
                 NSUserDefaults.standardUserDefaults().setValue(auth.uid, forKey: "uid")
-                print(BackendProcessor.backendProcessor.currentUserRef)
         })
     }
-    
-    
-    
 }

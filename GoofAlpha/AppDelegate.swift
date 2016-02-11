@@ -20,10 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         super.init()
         Firebase.defaultConfig().persistenceEnabled = true
-        
-        let UID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        
-        BackendProcessor.backendProcessor.retrievePostsFromUser(UID)
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

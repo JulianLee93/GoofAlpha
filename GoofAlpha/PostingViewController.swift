@@ -19,7 +19,6 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var imageToPost: UIImageView!
     var showCamera = Bool()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,6 +58,8 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         let uploader = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
         print(uploader)
+        
+        
 
         let imageString = UIImageJPEGRepresentation(imageToPost.image!, 0.5)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
         

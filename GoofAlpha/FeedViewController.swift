@@ -15,7 +15,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        BackendProcessor.backendProcessor.retrievePostsFromUser()
+        BackendProcessor.backendProcessor.pullUser()
         // Do any additional setup after loading the view.
     }
 

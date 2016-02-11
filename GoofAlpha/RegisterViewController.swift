@@ -22,11 +22,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref.observeAuthEventWithBlock { (authData) -> Void in
-            if authData != nil {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-            }
-        }
+
     }
 
     @IBAction func registerButtonTapped(sender: UIButton) {
@@ -34,6 +30,6 @@ class RegisterViewController: UIViewController {
         let passwordField = registerPassTextField.text
         NSUserDefaults.standardUserDefaults().setValue(emailField, forKey: "username")
         backendServant.createAuthAndDataForUser(emailField!, passwordField: passwordField!)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
 }

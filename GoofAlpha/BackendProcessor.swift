@@ -10,73 +10,94 @@ import Foundation
 import Firebase
 
 class BackendProcessor {
+    
     static let backendProcessor = BackendProcessor()
-    
     var currentUserPosts = [Post]()
-    
+    var currentUserDictionary:NSDictionary?
     let baseRef = Firebase(url: "https://goof-alpha-app.firebaseio.com")
     
-    var currentUserRef: Firebase {
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
-        let currentUser = Firebase(url: "\(baseRef)").childByAppendingPath("users").childByAppendingPath(userID)
-        return currentUser!
+    var currentUserRef: String! {
+        if NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil {
+            let userID = NSUserDefaults.standardUserDefaults().valueForKey("uid") as! String
+            return userID
+        } else {
+            print("NSUserDefaults NOT SET")
+            return nil
+        }
     }
+    
     
     
     func createAuthAndDataForUser(emailField: String, passwordField: String) {
         self.baseRef.createUser(emailField, password: passwordField) { (error, result) -> Void in
             if error == nil {
-                self.baseRef.authUser(emailField, password: passwordField,
-                    withCompletionBlock: { (error, auth) -> Void in
-                        let emailArray = emailField.componentsSeparatedByString("@")
-                        let emailName = emailArray[0]
-                        let newUser = User.init(email: emailName)
-                        let userRef = Firebase(url: "\(self.baseRef)/users")
-                        let newUserRef = Firebase(url: "\(userRef)/\(auth.uid)")
-                        newUserRef.setValue(newUser.toAnyObject())
-                        NSUserDefaults.standardUserDefaults().setValue(auth.uid, forKey: "uid")
-                })
+                print("AUTH RESULT: \(result["uid"]!)")
+                let emailArray = emailField.componentsSeparatedByString("@")
+                let emailName = emailArray[0]
+                let newUser = User.init(name: emailName, email: emailField, profilePic: "")
+                let userRef = Firebase(url: "\(self.baseRef)/users")
+                let newUserRef = Firebase(url: "\(userRef)/\(result["uid"]!)")
+                newUserRef.setValue(newUser.toAnyObject())
+                NSUserDefaults.standardUserDefaults().setValue(result["uid"], forKey: "uid")
             } else {
-                print(error.localizedDescription)
+                print("CREATE USER ERROR: \(error.localizedDescription)")
+//                let AlertController = UIAlertController.init(title: "User didn't create.", message: "Try again", preferredStyle: )
             }
         }
     }
     
     
+    
     func uploadPostForUser(uploader: String, image: String) {
-        
         let newPost = Post.init(uploader: uploader, image: image)
         let postRef = Firebase(url: "\(self.baseRef)/posts")
         let newPostCreated = postRef.childByAutoId()
         newPostCreated.setValue(newPost.toAnyObject())
-        
     }
     
     
-    func retrievePostsFromUser(retriever: String){
+    
+    func retrievePostsFromUser() {
+        
+        print("RETRIEVE POSTS FROM USER IS BEING CALLED NOW")
         let newRef = Firebase(url: "\(baseRef)/posts")
-        newRef.queryOrderedByChild("UID").queryEqualToValue(retriever).observeEventType(FEventType.Value, withBlock: { snapshot in
-
+        newRef.queryOrderedByChild("UID").queryEqualToValue(currentUserRef).observeEventType(FEventType.Value, withBlock: { snapshot in
             self.currentUserPosts = [Post]()
             for post in snapshot.children {
                 let currentPost = Post(snapshot: post as! FDataSnapshot)
                 self.currentUserPosts.append(currentPost)
             }
-            print(self.currentUserPosts.count)
-
+            print("COUNT OF ALL CURRENT USER POSTS: \(self.currentUserPosts.count)")
         })
-
     }
     
     
-    func pullUser(retriever: String) -> AnyObject {
-        let newRef = Firebase(url: "\(baseRef)/users")
-        newRef.queryOrderedByChild("UID").queryEqualToValue(retriever).observeEventType(FEventType.Value, withBlock: { snapshot in
-            
-            //let nowUser = snapshot.children as User
-        })
-        
-        return 0 //return the user
+    
+    func setUserProfilePic(imageString: String) {
+        let userProfilePicRef = Firebase(url: "\(baseRef)/users/\(currentUserRef)")
+        userProfilePicRef.updateChildValues(["profilePic":imageString])
+    }
+    
+    
+    
+    
+    func pullUser() {
+        let userDataRef = baseRef.childByAppendingPath("users").childByAppendingPath(currentUserRef)
+        let urlString = String(format: "%@.json", userDataRef.description)
+        let url = NSURL(string: urlString)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url!) { (data, response, error) -> Void in
+            do {
+                print("USER DATA PULL COMPLETED")
+                self.currentUserDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? NSDictionary
+                print(self.currentUserDictionary?.objectForKey("name"))
+                print(self.currentUserDictionary?.objectForKey("email"))
+
+            } catch let error as NSError {
+                print("Pull user error:"+error.localizedDescription)
+            }
+        }
+        task.resume()
     }
     
     
@@ -96,14 +117,26 @@ class BackendProcessor {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
+
+
+
+extension UIImage {
+    
+    func translateImageToString() -> String {
+        let imageString = UIImageJPEGRepresentation(self, 0.5)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        return imageString!
+    }
+}
+
+extension String {
+    func translateStringToImage() -> UIImage {
+        let imageData = NSData(base64EncodedString: self, options:.IgnoreUnknownCharacters)
+        let image = UIImage(data: (imageData)!)!
+        return image
+    }
+}
+
+
+
+
