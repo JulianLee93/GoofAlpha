@@ -44,7 +44,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let post = BackendProcessor.backendProcessor.feedPostArray[indexPath.row]
         cell.usernameLabel.text = post.user
         let imageString = post.postedImage
-        cell.imageView?.image = imageString.translateStringToImage()
+        cell.feedImageView.image = imageString.translateStringToImage()
         
         return cell
         
