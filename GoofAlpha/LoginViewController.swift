@@ -13,11 +13,19 @@ class LoginViewController: UIViewController {
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
 
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPassTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.init(red: 150.0/255.0, green: 50.0/255.0, blue: 200.0/255.0, alpha: 1.0)
+
+        loginEmailTextField.backgroundColor = UIColor.whiteColor()
+        emailLabel.textColor = UIColor.whiteColor()
+        loginPassTextField.backgroundColor = UIColor.whiteColor()
+        passwordLabel.textColor = UIColor.whiteColor()
         ref.observeAuthEventWithBlock { (authData) -> Void in
             if authData != nil {
                 NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")

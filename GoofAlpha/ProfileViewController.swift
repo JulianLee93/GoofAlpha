@@ -10,10 +10,12 @@ import UIKit
 import Firebase
 import AVFoundation
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
-    
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+
     static let userProfileViewController = ProfileViewController()
     
+    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var emojiPickerView: UIPickerView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
     @IBOutlet weak var profilePictureButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -21,9 +23,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
     let imagePicker: UIImagePickerController! = UIImagePickerController()
     var userProfile = NSDictionary()
+    var emojiArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emojiLabel.hidden = true
+        emojiArray = ["😁", "😂", "😃", "😄", "😅", "😆", "😇", "😈", "😉", "😊", "😋", "😌", "😍", "😎", "😏", "😐", "😑", "😒", "😓", "😔", "😕", "😖", "😗", "😘", "😙", "😚", "😛", "😜", "😝", "😞", "😟", "😠", "😡", "😢", "😣", "😤", "😥", "😦", "😧", "😨", "😩", "😪", "😫", "😬", "😭", "😮", "😯", "😰", "😱", "😲", "😳", "😴", "😵", "😶", "😷", "😸", "😹", "😺", "😻", "😼", "😽", "😾", "😿", "🙀", "🙁", "🙂", "🙃", "🙄", "🙅", "🙆", "🙇", "🙈", "🙉", "🙊", "🙋", "🙌", "🙍", "🙎", "🙏", "🙌", "👏", "👋", "👍", "👊", "✊", "✌️", "👌", "✋", "💪", "☝️", "👆", "👇", "👈", "👉", "🖕", "🤘", "🖖"]
+        
+        self.view.backgroundColor = UIColor.init(red: 100.0/255.0, green: 100.0/255.0, blue:225.0/255.0, alpha: 1.0)
         imagePicker.delegate = self
         userProfile = BackendProcessor.backendProcessor.currentUserDictionary!
         
@@ -37,19 +45,51 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let profileString = userProfile.objectForKey("profilePic") as! String
         profilePictureButton.setImage(profileString.translateStringToImage(), forState: .Normal)
         
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
         BackendProcessor.backendProcessor.pullUser()
         usernameLabel.text = userProfile.objectForKey("name") as? String
+        usernameLabel.textColor = UIColor.whiteColor()
         profileCollectionView.reloadData()
+
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return emojiArray.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return emojiArray[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        emojiLabel.text = emojiArray[row]
+        emojiPickerView.hidden = true
+        emojiLabel.hidden = false
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    // UICollectionViewDelegateFlowLayout Method #1
+//    override func viewWillLayoutSubviews() {
+//        profileCollectionView.collectionViewLayout.invalidateLayout()
+//    }
+//    
+//    // UICollectionViewDelegateFlowLayout Method #2
+//    func collectionview(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        
+//        var itemsCount : CGFloat = 2.0
+//        if UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.Portrait {
+//            itemsCount = 3.0
+//        }
+//        return CGSize(width: self.view.frame.width/itemsCount - 20, height: 100/100 * (self.view.frame.width/itemsCount - 20))
+//    }
     
     @IBAction func onProfilePictureTapped(sender: AnyObject) {
         

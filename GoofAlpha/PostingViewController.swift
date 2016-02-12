@@ -21,6 +21,10 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        self.view.backgroundColor = UIColor.init(red: 150.0/255.0, green: 50.0/255.0, blue: 200.0/255.0, alpha: 1.0)
+
+
         
     }
     

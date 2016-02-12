@@ -17,6 +17,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.init(red: 50.0/255.0, green: 150.0/255.0, blue: 100.0/255.0, alpha: 1.0)
+
         BackendProcessor.backendProcessor.retrievePostsFromUser()
         BackendProcessor.backendProcessor.pullUser()
         BackendProcessor.backendProcessor.retrieveAllPosts()
@@ -45,6 +47,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.usernameLabel.text = post.user
         let imageString = post.postedImage
         cell.feedImageView.image = imageString.translateStringToImage()
+        cell.backgroundColor = UIColor.init(red: 50.0/255.0, green: 150.0/255.0, blue: 100.0/255.0, alpha: 1.0)
         
         return cell
         
