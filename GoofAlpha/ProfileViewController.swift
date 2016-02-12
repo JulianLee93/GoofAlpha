@@ -25,6 +25,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var userProfile = NSDictionary()
     var emojiArray = [String]()
     
+    override func viewDidAppear(animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +55,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profileCollectionView.reloadData()
 
     }
+    
+    
+    
+    @IBAction func logoutButton(sender: UIButton) {
+        let currentUserUID = BackendProcessor.backendProcessor.currentUserRef
+        let currentUserRef = Firebase(url: "\(ref)/users/\(currentUserUID)")
+        currentUserRef.unauth()
+    }
+    
+    
+    
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -129,6 +144,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         cell.collectionViewCellImage.image = image
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
 }

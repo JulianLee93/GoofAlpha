@@ -60,6 +60,8 @@ class BackendProcessor {
     
     func retrievePostsFromUser() {
         
+        
+        
         print("RETRIEVE POSTS FROM USER IS BEING CALLED NOW")
         let newRef = Firebase(url: "\(baseRef)/posts")
         newRef.queryOrderedByChild("UID").queryEqualToValue(currentUserRef).observeEventType(FEventType.Value, withBlock: { snapshot in

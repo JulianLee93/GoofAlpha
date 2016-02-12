@@ -43,7 +43,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("FeedCell") as! FeedTableViewCell
-        let post = BackendProcessor.backendProcessor.feedPostArray[indexPath.row]
+        let feedPostArray = BackendProcessor.backendProcessor.feedPostArray
+        let post = feedPostArray[feedPostArray.count - 1 - indexPath.row]
         cell.usernameLabel.text = post.user
         let imageString = post.postedImage
         cell.feedImageView.image = imageString.translateStringToImage()

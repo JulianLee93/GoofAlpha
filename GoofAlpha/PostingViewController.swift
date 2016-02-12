@@ -14,7 +14,10 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     let ref = Firebase(url: "https://goof-alpha-app.firebaseio.com/")
     let backendServant = BackendProcessor()
-    let imagePicker: UIImagePickerController! = UIImagePickerController()
+    var imagePicker: UIImagePickerController! = UIImagePickerController()
+    var imagePickerCamera: UIImagePickerController! = UIImagePickerController()
+
+    //let collectionView = UICollectionView()
     
     @IBOutlet weak var imageToPost: UIImageView!
     var showCamera = Bool()
@@ -31,16 +34,24 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidDisappear(animated: Bool) {
         imageToPost.image = nil
     }
+    @IBAction func onCameraButtonTapped(sender: AnyObject) {
+        
+        imagePickerCamera = UIImagePickerController()
+        imagePickerCamera.delegate = self
+        imagePickerCamera.sourceType = .Camera
+        presentViewController(imagePickerCamera, animated: true, completion: nil)
+        
+    }
     
     override func viewDidAppear(animated: Bool) {
-        imagePicker.delegate = self
+//        imagePicker.delegate = self
         
-        if !showCamera {
-            presentViewController(imagePicker, animated: true, completion: {})
-            showCamera = true
-        }else{
-            showCamera = false
-        }
+//        if !showCamera {
+//            presentViewController(imagePicker, animated: true, completion: {})
+//            showCamera = true
+//        }else{
+//            showCamera = false
+//        }
         
         // Do any additional setup after loading the view.
         
@@ -85,21 +96,14 @@ class PostingViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         //if 
         
-        imageToPost.image = image //{
-            
-        //}
-        
-        imagePicker.dismissViewControllerAnimated(true, completion: {
-        
-        //save the image here
-        
-        })
-  
-    
+        imageToPost.image = image
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        imagePickerCamera.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: {})
+        tabBarController?.selectedIndex = 0
     }
     
 

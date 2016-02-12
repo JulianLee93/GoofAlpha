@@ -32,8 +32,6 @@ class RegisterViewController: UIViewController {
         emailLabel.textColor = UIColor.whiteColor()
         password1Label.textColor = UIColor.whiteColor()
         password2Label.textColor = UIColor.whiteColor()
-
-
     }
 
     @IBAction func registerButtonTapped(sender: UIButton) {
